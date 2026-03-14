@@ -90,6 +90,10 @@ EarlyPulse/
 
 ---
 
+## API Preview
+
+![Swagger UI](docs/swagger.png)
+
 ## Quickstart
 
 ```bash
@@ -242,3 +246,4 @@ See [`docs/model_card.md`](docs/model_card.md) for the full model card.
 ---
 
 *⚠ Research prototype. Not validated for clinical use.*
+
