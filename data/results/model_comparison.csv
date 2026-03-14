@@ -1,0 +1,5 @@
+Model,AUROC_PatientLevel,Sensitivity,Specificity,MedianEarlyHours,MeanEarlyHours,Notes
+qSOFA-like rule,0.5838,23.42,74.09,14.0,13.37,"Rule-based baseline using Resp>22 & SBP<100 (score>=2)"
+XGBoost (6h horizon, thr=0.10),0.7693,8.24,98.82,14.0,13.67,"Per-hour ML baseline with 6h prediction and 24h early window"
+GRU (coming soon),, , , , ,"To be trained in Phase 3.3"
+
