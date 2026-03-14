@@ -307,7 +307,7 @@ st.markdown('<div class="ep-rule"></div>', unsafe_allow_html=True)
 # CONFIG & CONSTANTS
 # ============================
 
-DATA_DIR = "data/training_setA"
+import os as _os; DATA_DIR = _os.path.join(_os.path.dirname(_os.path.abspath(__file__)), "data", "training_setA")
 RESULTS_DIR = "data/results"
 
 QSOFA_CSV = f"{RESULTS_DIR}/earlypulse_qSOFA_24h_CORRECT.csv"
@@ -2329,3 +2329,4 @@ Use EarlyPulse as a **learning & experimentation tool** for model evaluation, no
     """,
     unsafe_allow_html=True,
 )
+
