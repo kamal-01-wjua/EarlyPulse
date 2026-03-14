@@ -1,0 +1,116 @@
+# EarlyPulse — Central Configuration
+# ─────────────────────────────────────────────────────────────
+# All scripts read from here. Never hardcode paths in scripts.
+
+project:
+  name: EarlyPulse
+  version: "2.0"
+  seed: 42
+
+paths:
+  data_dir:     "data/training_setA"
+  results_dir:  "data/results"
+  models_dir:   "."
+  experiments:  "experiments"
+
+  # Pre-computed result CSVs
+  xgb_csv:   "data/results/earlypulse_XGBoost_6h24h_CORRECT.csv"
+  gru_csv:   "data/results/earlypulse_GRU_6h24h_CORRECT.csv"
+  qsofa_csv: "data/results/earlypulse_qSOFA_24h_CORRECT.csv"
+
+  # Model weights
+  xgb_model: "earlypulse_xgb_6h24h_model.json"
+  gru_model: "earlypulse_gru_6h_model.pt"
+  gru_data:  "earlypulse_gru_sequences.pt"
+
+  # Feature arrays
+  x_xgb: "X_xgboost.npy"
+  y_xgb: "y_xgboost.npy"
+  pids:  "patient_ids.csv"
+  feat_names: "xgb_feature_names.txt"
+
+splits:
+  train: 0.80
+  val:   0.10
+  test:  0.10
+
+features:
+  vitals:
+    - HR
+    - O2Sat
+    - Temp
+    - SBP
+    - MAP
+    - DBP
+    - Resp
+    - EtCO2
+    - BaseExcess
+    - HCO3
+    - FiO2
+    - pH
+    - PaCO2
+    - SaO2
+    - AST
+    - BUN
+    - Alkalinephos
+    - Calcium
+    - Chloride
+    - Creatinine
+    - Bilirubin_direct
+    - Glucose
+    - Lactate
+    - Magnesium
+    - Phosphate
+    - Potassium
+    - Bilirubin_total
+    - TroponinI
+    - Hct
+    - Hgb
+    - PTT
+    - WBC
+    - Fibrinogen
+    - Platelets
+    - Age
+    - Gender
+    - HospAdmTime
+  stats: [mean, std, min, max, last]
+  total: 185   # 37 vitals × 5 stats
+
+xgboost:
+  threshold: 0.10
+  params:
+    n_estimators:     500
+    max_depth:        6
+    learning_rate:    0.05
+    subsample:        0.8
+    colsample_bytree: 0.8
+    min_child_weight: 5
+    gamma:            0.1
+    reg_alpha:        0.1
+    reg_lambda:       1.0
+    tree_method:      hist
+    eval_metric:      aucpr
+
+gru:
+  threshold:    0.20
+  hidden_size:  64
+  num_layers:   1
+  batch_size:   64
+  num_epochs:   5
+  lr:           0.001
+  bidirectional: false
+
+optuna:
+  n_trials: 60
+  n_folds:  3
+  metric:   auprc    # optimise for AUPRC, not AUROC
+
+drift:
+  psi_threshold: 0.20
+  ks_alpha:      0.05
+  retrain_if_n_drifted: 3
+
+api:
+  host: "0.0.0.0"
+  port: 8000
+  log_level: info

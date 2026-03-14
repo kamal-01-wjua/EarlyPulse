@@ -1,0 +1,54 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+.Python
+*.egg-info/
+dist/
+build/
+.eggs/
+
+# Environments
+.env
+.venv
+env/
+venv/
+
+# Data — do NOT commit raw ICU data (large + privacy)
+data/training_setA/
+data/training_setB/
+*.psv
+
+# Model weights (large binary files — use Git LFS or releases)
+*.pt
+*.pth
+*.pkl
+*.json.bak
+
+# BUT do commit the XGBoost model JSON if small enough (<10MB)
+# !earlypulse_xgb_6h24h_model.json
+
+# NumPy arrays (large)
+*.npy
+*.npz
+patient_ids.csv
+X_xgboost.npy
+y_xgboost.npy
+earlypulse_gru_sequences.pt
+
+# Experiment outputs (optional — commit plots, not arrays)
+experiments/*/shap_values.npy
+experiments/*/study_results.csv
+
+# Streamlit
+.streamlit/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# IDEs
+.vscode/
+.idea/
+*.swp
