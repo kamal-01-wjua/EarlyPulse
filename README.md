@@ -15,7 +15,7 @@
 ---
 
 <!-- Replace with actual dashboard GIF after recording -->
-<!-- ![EarlyPulse Dashboard](docs/demo.gif) -->
+![EarlyPulse Dashboard](docs/demo.gif)
 
 ## Clinical Context
 
